@@ -20,6 +20,6 @@ See [command_set](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/com
 
 # Links
 
-[Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/markdown-cheatsheet)
-[Agilent U1602A handheld scope - teardown - EEVblog Forum](https://www.eevblog.com/forum/reviews/agilent-u1602a-handheld-scope-teardown/)
-[Agilent U1604A 40MHz Handheld Dual Channel Digital Oscilloscope - EEVblog Forum](https://www.eevblog.com/forum/repair/agilent-u1604a-40mhz-handheld-dual-channel-digital-oscilloscope/)
+* [Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/markdown-cheatsheet)
+* [Agilent U1602A handheld scope - teardown - EEVblog Forum](https://www.eevblog.com/forum/reviews/agilent-u1602a-handheld-scope-teardown/)
+* [Agilent U1604A 40MHz Handheld Dual Channel Digital Oscilloscope - EEVblog Forum](https://www.eevblog.com/forum/repair/agilent-u1604a-40mhz-handheld-dual-channel-digital-oscilloscope/)
