@@ -39,7 +39,13 @@ The battery gauge is calibrated for the 7.2V NiMH pack. Now the state is even fu
 I need to check the voltage level vs. battery state indicator. Then I need to find out the PCB traces and install a voltage divider.
 
 ## Charging circuit modification
-Max712/713 based charger. Changes done, need to be documented.
+[MAX713](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX712-MAX713.pdf) based charger.
+Charger can deliver constant current. Charger is set to eight cells. Therefore:
+* open PGM0
+* connect PGM1 to battery minus
+
+Charging needs to be documentated (green LED, threshhold about 100mA,...)
 
 ## External charger
-Current-limited Step-down converter set to 13.4V and 1 Ampere. Current limit is needed because the internal charger only limits the current when the pack is not completely empty.
+Current-limited step-down converter set to 13.4V and 1 Ampere. Current limit is needed because the internal charger only limits the current when the pack is not completely empty.
+The external charger needs to be set to 14V to get 13.6V on the battery pack. This will lead to 13mA charging current at 13.6V pack voltage.
