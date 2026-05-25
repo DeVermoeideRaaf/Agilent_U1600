@@ -78,8 +78,8 @@ Button names are taken from software PC Link V2.51 (screenshot needs to be added
 |TRIG. MODE           |                     |06 37 31 00 00 3b|                     00 data 00 4F 4B 00|
 
 Note 1: The data bytes depend on the actual running function/mode (scope, meter,...).<br>
-Note 2: The menu options controlled by the function keys are not transmitted via the response. So the remote control software must know the menu structure.
-Note 3: There seems to be a buffer for the response. For example: If scope is running and METER is send, the response contains scope data. The next response contains meter data.
+Note 2: The menu options controlled by the function keys are not transmitted via the response. So the remote control software must know the menu structure.<br>
+Note 3: There seems to be a buffer for the response. For example: If scope is running and METER is send, the response contains scope data. The next response contains meter data.<br>
 
 ### Examples
 ![The screenshot shows PulseView record from sending the START-command and part of the response](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/U1604A_cmd_PowerOn.png "PulseView decoding the PowerOn command and the response")
