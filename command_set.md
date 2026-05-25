@@ -1,3 +1,4 @@
+
 # Remote control command set
 Actual state: Sending commands is well known. Analysis of the response needs to be done.
 
@@ -50,19 +51,19 @@ Button names are taken from software PC Link V2.51 (screenshot needs to be added
 |Power on             |lock local buttons   |53 54 41 52 54 3b|00 50 45 52 4D 49 54 00 data 00 4F 4B 00|
 |Power off            |unlock local buttons |   53 54 4f 50 3b|                                45 4E 44|
 |n.a.                 |send screen copy/data|06 00 00 00 00 3b|                     00 data 00 4F 4B 00|
-|Ch1 Y-div decrease   |                     |06 31 30 00 00 3b|                     00 data 00 4F 4B 00|
-|Ch1 Y-div increase   |                     |06 31 31 00 00 3b|                     00 data 00 4F 4B 00|
-|Ch2 Y-div decrease   |                     |06 31 32 00 00 3b|                     00 data 00 4F 4B 00|
-|Ch2 Y-div increase   |                     |06 31 33 00 00 3b|                     00 data 00 4F 4B 00|
-|X-div increase       |                     |06 31 34 00 00 3b|                     00 data 00 4F 4B 00|
-|X-div decrease       |                     |06 31 35 00 00 3b|                     00 data 00 4F 4B 00|
+|Ch1 Y-div decrease   |fewer volts per div  |06 31 30 00 00 3b|                     00 data 00 4F 4B 00|
+|Ch1 Y-div increase   |more volts per div   |06 31 31 00 00 3b|                     00 data 00 4F 4B 00|
+|Ch2 Y-div decrease   |fewer volts per div  |06 31 32 00 00 3b|                     00 data 00 4F 4B 00|
+|Ch2 Y-div increase   |more volts per div   |06 31 33 00 00 3b|                     00 data 00 4F 4B 00|
+|X-div increase       |more time per div    |06 31 34 00 00 3b|                     00 data 00 4F 4B 00|
+|X-div decrease       |fewer time per div   |06 31 35 00 00 3b|                     00 data 00 4F 4B 00|
 |rotary button ccw    |                     |06 31 3e 00 00 3b|                     00 data 00 4F 4B 00|
 |rotary button cw     |                     |06 31 3f 00 00 3b|                     00 data 00 4F 4B 00|
 |rotary button press  |                     |06 37 30 00 00 3b|                     00 data 00 4F 4B 00|
-|F1                   |                     |06 33 30 00 00 3b|                     00 data 00 4F 4B 00|
-|F2                   |                     |06 33 31 00 00 3b|                     00 data 00 4F 4B 00|
-|F3                   |                     |06 33 32 00 00 3b|                     00 data 00 4F 4B 00|
-|F4                   |                     |06 33 33 00 00 3b|                     00 data 00 4F 4B 00|
+|F1                   |funtion key 1        |06 33 30 00 00 3b|                     00 data 00 4F 4B 00|
+|F2                   |funtion key 2        |06 33 31 00 00 3b|                     00 data 00 4F 4B 00|
+|F3                   |funtion key 3        |06 33 32 00 00 3b|                     00 data 00 4F 4B 00|
+|F4                   |funtion key 4        |06 33 33 00 00 3b|                     00 data 00 4F 4B 00|
 |TRIGGER              |                     |06 32 30 00 00 3b|                     00 data 00 4F 4B 00|
 |MEASURE              |                     |06 32 31 00 00 3b|                     00 data 00 4F 4B 00|
 |CURSOR               |                     |06 32 34 00 00 3b|                     00 data 00 4F 4B 00|
@@ -76,9 +77,14 @@ Button names are taken from software PC Link V2.51 (screenshot needs to be added
 |MANUAL R.            |                     |06 34 33 00 00 3b|                     00 data 00 4F 4B 00|
 |TRIG. MODE           |                     |06 37 31 00 00 3b|                     00 data 00 4F 4B 00|
 
+Note 1: The data bytes depend on the actual running function/mode (scope, meter,...).<br>
+Note 2: The menu options controlled by the function keys are not transmitted via the response. So the remote control software must know the menu structure.
+Note 3: There seems to be a buffer for the response. For example: If scope is running and METER is send, the response contains scope data. The next response contains meter data.
+
 ### Examples
 ![The screenshot shows PulseView record from sending the START-command and part of the response](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/U1604A_cmd_PowerOn.png "PulseView decoding the PowerOn command and the response")
 
 ![The screenshot shows PulseView record from sending the update-screen-command and part of the response](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/U1604A_cmd_ScreenUpdate.png "PulseView decoding the ScreenUpdate command and the response")
 
 ![The screenshot shows PulseView record from sending the STOP-command and the response](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/U1604A_cmd_PowerOff.png "PulseView decoding the PowerOff command and the response")
+
