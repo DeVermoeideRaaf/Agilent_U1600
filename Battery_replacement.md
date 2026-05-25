@@ -47,5 +47,9 @@ Charger can deliver constant current. Charger is set to eight cells. Therefore:
 Charging needs to be documentated (green LED, threshhold about 100mA,...)
 
 ## External charger
-Current-limited step-down converter set to 13.4V and 1 Ampere. Current limit is needed because the internal charger only limits the current when the pack is not completely empty.
+The original charger (U1570A AC power adapter) is a 12V 2A constant voltage converter. This is not usable with the LPF battery pack.
+
+At the moment a current-limited step-down converter set to 13.4V and 1 Ampere is used. Current limit is needed because the internal charger only limits the current when the pack is not completely empty.
 The external charger needs to be set to 14V to get 13.6V on the battery pack. This will lead to 13mA charging current at 13.6V pack voltage.
+A current threshold circuit to end charging at this low current needs to be added.
+Better option: Using an LFP charger.
