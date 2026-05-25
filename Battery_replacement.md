@@ -36,7 +36,22 @@ The cells are placed into heat shrink tube. The BMS will be laying next to the c
 
 ## Battery gauge
 The battery gauge is calibrated for the 7.2V NiMH pack. Now the state is even full if the BMS is right before switching of to prevent deep discharge.
-I need to check the voltage level vs. battery state indicator. Then I need to find out the PCB traces and install a voltage divider.
+The relevant parts are:<br>
+* U509 (op 2, working as buffer amp, output directly to U505 pin 75)
+* R101 (10k)
+* R125 (100k)
+* R126 (40.2k)
+* U505 (AI0, pin 75; main processor; Samsung S3C44B0X01L)
+
+![Schematic of battery gauge](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/Battery-gauge.png "Schematic of battery gauge")
+
+Voltage levels at U509 pin 5 to GND (not very accurate, values seems to vary a bit?):
+* third bar: 2.123V...2.108V
+* second bar: 2.070V...2.062V
+* first bar: 1.984V...1.986V
+* Battery discharged warning: 1.847V
+
+If the new battery discharged warning should come up at about 10.8V R126 should be changed to 20.65k (20.5k + 150R).
 
 ## Charging circuit modification
 [MAX713](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX712-MAX713.pdf) based charger.
@@ -46,10 +61,12 @@ Charger can deliver constant current. Charger is set to eight cells. Therefore:
 
 Charging needs to be documentated (green LED, threshhold about 100mA,...)
 
-## External charger
+## External charger / wall adapter
 The original charger (U1570A AC power adapter) is a 12V 2A constant voltage converter. This is not usable with the LPF battery pack.
 
-At the moment a current-limited step-down converter set to 13.4V and 1 Ampere is used. Current limit is needed because the internal charger only limits the current when the pack is not completely empty.
+At the moment a current-limited step-down converter set to 13.4V and 1 Ampere is used. Current limit is needed because the internal charger only limits the current when the pack is not completely empty (need to be checked).
 The external charger needs to be set to 14V to get 13.6V on the battery pack. This will lead to 13mA charging current at 13.6V pack voltage.
 A current threshold circuit to end charging at this low current needs to be added.
-Better option: Using an LFP charger.
+Better option: Using an LFP charger.<br>
+More better option: Connecting DC input direcly to the battery pack for faster charging.
+
