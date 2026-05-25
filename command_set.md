@@ -1,6 +1,30 @@
 # Remote control command set
 Actual state: Sending commands is well known. Analysis of the response needs to be done.
 
+## Hardware connection
+The scope is connected to the host computer running linux via an Micro-USB to USB-A cable.<br>
+lsusb:
+```
+Bus 003 Device 010: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+```
+dmesg:
+```
+[  691.432770] usb 3-2.3.4.3: new full-speed USB device number 10 using xhci_hcd
+[  691.529380] usb 3-2.3.4.3: New USB device found, idVendor=0403, idProduct=6001, bcdDevice= 4.00
+[  691.529389] usb 3-2.3.4.3: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[  691.529393] usb 3-2.3.4.3: Product: U1600A Handheld Oscilloscope
+[  691.529397] usb 3-2.3.4.3: Manufacturer: Agilent
+[  691.529399] usb 3-2.3.4.3: SerialNumber: XXXXXXXX
+[  691.638164] usbcore: registered new interface driver usbserial_generic
+[  691.638188] usbserial: USB Serial support registered for generic
+[  691.652049] usbcore: registered new interface driver ftdi_sio
+[  691.652068] usbserial: USB Serial support registered for FTDI USB Serial Device
+[  691.652327] ftdi_sio 3-2.3.4.3:1.0: FTDI USB Serial Device converter detected
+[  691.652400] usb 3-2.3.4.3: Detected FT232B
+[  691.654062] usb 3-2.3.4.3: FTDI USB Serial Device converter now attached to ttyUSB0
+```
+Note: The serialNumber is X-ed by the author ;-)
+
 ## Communication settings
 * UART
 * baudrate: 230400
@@ -14,7 +38,7 @@ Actual state: Sending commands is well known. Analysis of the response needs to 
 * sending the number -> button action
 
 ## Commands
-Most commands consists of six bytes.
+Most commands consist of six bytes.
 Usually command starts with hex 06 and ends with hex 3b.
 Button names are taken from software PC Link V2.51 (screenshot needs to be added).
 
@@ -51,3 +75,10 @@ Button names are taken from software PC Link V2.51 (screenshot needs to be added
 |AUTOSCALE            |                     |06 34 32 00 00 3b|
 |MANUAL R.            |                     |06 34 33 00 00 3b|
 |TRIG. MODE           |                     |06 37 31 00 00 3b|
+
+### Examples
+![The screenshot shows PulseView record from sending the START-command and part of the response](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/U1604A_cmd_PowerOn.png "PulseView decoding the PowerOn command and the response")
+
+![The screenshot shows PulseView record from sending the update-screen-command and part of the response](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/U1604A_cmd_ScreenUpdate.png "PulseView decoding the ScreenUpdate command and the response")
+
+![The screenshot shows PulseView record from sending the STOP-command and the response](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/U1604A_cmd_PowerOff.png "PulseView decoding the PowerOff command and the response")
