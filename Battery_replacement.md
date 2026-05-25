@@ -44,6 +44,7 @@ The relevant parts are:<br>
 * U505 (AI0, pin 75; main processor; Samsung S3C44B0X01L)
 
 ![Schematic of battery gauge](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/Battery-gauge.png "Schematic of battery gauge")
+Note: The "semiconductor switch" may be some transistor which disconnects a power bus if the scope is switched off. Only the voltage drop when switched on is relevant in this case. Thats why it's shown as voltage source.
 
 Voltage levels at U509 pin 5 to GND (not very accurate, values seems to vary a bit?):
 * third bar: 2.123V...2.108V
