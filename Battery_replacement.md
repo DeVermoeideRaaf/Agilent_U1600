@@ -14,9 +14,12 @@ The original charger delivers 12V. If the DC input of the scope is connected to 
 * connector type: tbd.
 
 ## LFP replacement
+* six LFP cells 3S2P (3x 3.2V = 9.6V nominal voltage; 8.1V...10.8V range)
 * four LFP cells in series (4x 3.2V = 12.8V nominal voltage; 10.8V...14.4V range)
 * possible cell type: generic IFR18650 (about 2Ah)
 * BMS needed, balancer possible but not necessary
+* when using six cells the space for BMS PCB is very limited -> no standard PCB, developing own BMS PCB necessary
+* when using four cells there is space for a standard BMS PCB
 
 ## New LFP pack
 Modifying a pack was cheaper and easier than buying cells and BMS seperatly.
@@ -52,7 +55,16 @@ Voltage levels at U509 pin 5 to GND (not very accurate, values seems to vary a b
 * first bar: 1.984V...1.986V
 * Battery discharged warning: 1.847V
 
-If the new battery discharged warning should come up at about 10.8V R126 should be changed to 20.65k (20.5k + 150R).
+If the new battery discharged warning should come up at about 10.8V R126 should be changed to 20.65k (20.5k + 150R).<br>
+<br>
+Test setup (20k + 470R + 180R):
+![Three resistors as replacement for R126](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/Batterielevel-mod-provisorisch.jpg "Three resistors as replacement for R126")<br>
+<br>
+Measured voltage levels (need to be confirmed at real usage):
+* third bar: 12.48V...12.4V
+* second bar: 12.15V...12.1V
+* first bar: 11.65V...11.62V
+* Battery discharged warning: 10.85V
 
 ## Charging circuit modification
 [MAX713](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX712-MAX713.pdf) based charger.
