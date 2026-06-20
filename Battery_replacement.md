@@ -33,16 +33,16 @@ So I guess that the scope can run from a up to 12V battery pack.
 Modifying a pack was cheaper and easier than buying cells and BMS seperatly.
 Used pack: [EREMIT 12V 2Ah 25.6Wh](https://www.eremit.de/p/12v-2ah-flacher-lifepo4-mit-bms)
 
-Label:
+Label:<br>
 ![Label of LFP pack](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/LiFePO4-Akku-Typ.jpg "Label")
 
-During dismantling the pack: This is the BMS pcb. You can see the original arrangement of the for cells and the BMS.
+During dismantling the pack: This is the BMS pcb. You can see the original arrangement of the for cells and the BMS.<br>
 ![BMS of partly dismanteled LFP pack](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/LiFePO4-Akku-BMS.jpg "BMS of partly dismantelt pack")
 
-This is how the cells will be arranged in the future. The pack is split into two halfes and folded. No cell connector needs to be opened.
+This is how the cells will be arranged in the future. The pack is split into two halfes and folded. No cell connector needs to be opened.<br>
 ![rearranged cells](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/LiFePO4-Akku-vorbereitet.jpg "rearranged cells")
 
-The cells are placed into heat shrink tube. The BMS will be laying next to the cells. Not the best solution. Some foam will helb to survive vibration.
+The cells are placed into heat shrink tube. The BMS will be laying next to the cells. Not the best solution. Some foam will helb to survive vibration.<br>
 ![LFP pack installed in battery compartment](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/LiFePO4-Akku-eingebaut.jpg "pack installed")
 
 ## Battery gauge
@@ -89,7 +89,7 @@ The CV/CC curve seems to be not steep enough resulting in long charge time with 
 
 
 ## Internal charging circuit modification
-[MAX713](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX712-MAX713.pdf) based charger.
+[MAX713](https://github.com/DeVermoeideRaaf/Agilent_U1600/tree/main/resources/max712-max713.pdf) based charger.
 Charger can deliver constant current. Charger is set to eight cells. Therefore:
 * PGM0: open
 * PGM1: Bat-
@@ -111,7 +111,7 @@ There problem is, that the current limit is set by the LM2596S step-down convert
 
 ## External charger - bridging internal charger curcuit
 As the internal MAX713-based charger circuit does not work in this case, it should be bridged out while charging. As we do not want to have any additional voltage drop between charger and battery pack, a diode is not an option. But a so called "ideal diode" is.<br><br>
-A circuit based on an [LT4412](https://www.analog.com/media/en/technical-documentation/data-sheets/ltc4412.pdf) and two p-channel MOSFETs AOD4185 will do the job.
+A circuit based on an [LT4412](https://github.com/DeVermoeideRaaf/Agilent_U1600/tree/main/resources/LTC4412ES6.pdf) and two p-channel MOSFETs [AOD4185](https://github.com/DeVermoeideRaaf/Agilent_U1600/tree/main/resources/AOD4185.pdf) will do the job.<br>
 ![ideal diode circuit pcb top side](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/IdealeDiodePCBTop.jpg "Generic ideal diode PCB top side view")<br>
 <br>
 This board is placed inside the scope and connected between the dc connector plus PCB trace and the battery pack plus PCB trace. So while charging (= voltage from charger is higher than voltage from battery pack) the current flows via the two MOSFETs with low Rds_on (low voltage drop) into the battery pack.<br>
