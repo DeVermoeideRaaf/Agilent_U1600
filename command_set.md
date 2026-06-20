@@ -48,7 +48,7 @@ Button names are taken from software PC Link V2.51 (screenshot needs to be added
 
 |button name          |function             |command (hex)    |response                                |
 |---------------------|---------------------|----------------:|---------------------------------------:|
-|Power on             |lock local buttons   |53 54 41 52 54 3b|00 50 45 52 4D 49 54 00 <data> 00 4F 4B 00|
+|Power on             |lock local buttons   |53 54 41 52 54 3b|00 50 45 52 4D 49 54 00 &lt;data&gt; 00 4F 4B 00|
 |Power off            |unlock local buttons |   53 54 4f 50 3b|                                45 4E 44|
 |n.a.                 |send screen copy/data|06 00 00 00 00 3b|                     00 data 00 4F 4B 00|
 |Ch1 Y-div decrease   |fewer volts per div  |06 31 30 00 00 3b|                     00 data 00 4F 4B 00|
