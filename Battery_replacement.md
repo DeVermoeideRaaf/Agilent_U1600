@@ -18,7 +18,7 @@ So I guess that the scope can run from a up to 12V battery pack.
 * eight Panasonic eneloop in series (8x 1.2V = 9.6V; capacity: 1.5Ah; about 14Wh)
 * Battery holder must to have low contact resistance
 * possible battery holder (not tested): Keystone 1013 or Keystone 1015
-* PCB as carrier for the cells
+* PCB as carrier for the battery holder
 * Changing the cells is a bit cumbersome because of the stand
 
 ## LFP replacement
@@ -44,19 +44,6 @@ This is how the cells will be arranged in the future. The pack is split into two
 
 The cells are placed into heat shrink tube. The BMS will be laying next to the cells. Not the best solution. Some foam will helb to survive vibration.
 ![LFP pack installed in battery compartment](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/LiFePO4-Akku-eingebaut.jpg "pack installed")
-
-## External charger / wall adapter
-The original charger (U1570A AC power adapter) seems to be a 12V 2A constant voltage converter. This is not usable with the LPF battery pack.
-
-At the moment a current-limited step-down converter set to 14.0V and 1 Ampere is used (cheap LM2596S board). Current limit is needed because the internal charger only limits the current when the pack is not completely empty (need to be checked).
-The external charger needs to be set to 14V to get 13.6V on the battery pack. This will lead to 13mA charging current at 13.6V pack voltage.
-A current threshold circuit to end charging at this low current needs to be added.
-Better option: Using an LFP charger.<br>
-More better option: Connecting DC input directly to the battery pack for faster charging.
-
-### LM2576S problems
-The CV/CC curve seems to be not steep enough resulting in long charge time with lower than set current. Charger needs to be improved.
-
 
 ## Battery gauge
 The battery gauge is calibrated for the 7.2V NiMH pack. Now the state is even full if the BMS is right before switching of to prevent deep discharge.
@@ -86,9 +73,22 @@ Measured voltage levels at real usage:
 * second bar off at 12.24V
 * first bar off at 11.66V
 * Battery discharged warning at 10.92V
-* deep discharge switch off at 10.3V (not sure if protection PCB or scope)
+* deep discharge switch off at 10.3V
 
-## Charging circuit modification
+## External charger / wall adapter
+The original charger (U1570A AC power adapter) seems to be a 12V 2A constant voltage converter. This is not usable with the LPF battery pack.
+
+At the moment a current-limited step-down converter set to 14.0V and 1 Ampere is used (cheap LM2596S board). Current limit is needed because the internal charger only limits the current when the pack is not completely empty (need to be checked).
+The external charger needs to be set to 14V to get 13.6V on the battery pack. This will lead to 13mA charging current at 13.6V pack voltage.
+A current threshold circuit to end charging at this low current needs to be added.
+Better option: Using an LFP charger.<br>
+More better option: Connecting DC input directly to the battery pack for faster charging.
+
+### LM2576S problems
+The CV/CC curve seems to be not steep enough resulting in long charge time with lower than set current. Charger needs to be improved.
+
+
+## Internal charging circuit modification
 [MAX713](https://www.analog.com/media/en/technical-documentation/data-sheets/MAX712-MAX713.pdf) based charger.
 Charger can deliver constant current. Charger is set to eight cells. Therefore:
 * PGM0: open
@@ -104,4 +104,19 @@ Second try with 9 cell config and disabled slope detection:
 * PGM2: V+
 * PGM3: Bat-
 
-No difference. This may be a problem of the LM2567S "charger".
+No difference.<br>
+![Voltage and current graph while charging via MAX713 set to 9 cells](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/Laden-MAX713-9Zellen.png "Voltage and current while charging via MAX713 set to 9 cells")<br>
+Using the internal charger circuit seems not to be the way if 12V LFP pack ist used.<br>
+There problem is, that the current limit is set by the LM2596S step-down converter and the charging current flows through one pnp-transistor and diode (Q1 and D1 in the typical operating circuit in MAX713 datasheet). When charging CC-CV this way, every voltage drop between charger output and battery pack should be avoided. Otherwise the charging time rises massively.
+
+## External charger - bridging internal charger curcuit
+As the internal MAX713-based charger circuit does not work in this case, it should be bridged out while charging. As we do not want to have any additional voltage drop between charger and battery pack, a diode is not an option. But a so called "ideal diode" is.<br><br>
+A circuit based on an [LT4412](https://www.analog.com/media/en/technical-documentation/data-sheets/ltc4412.pdf) and two p-channel MOSFETs AOD4185 will do the job.
+![ideal diode circuit pcb top side](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/IdealeDiodePCBTop.jpg "Generic ideal diode PCB top side view")<br>
+<br>
+This board is placed inside the scope and connected between the dc connector plus PCB trace and the battery pack plus PCB trace. So while charging (= voltage from charger is higher than voltage from battery pack) the current flows via the two MOSFETs with low Rds_on (low voltage drop) into the battery pack.<br>
+And this is what we get:<br>
+![Voltage and current graph while charging via ideal diode](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/Laden-idealeDiode.png "Voltage and current while charging via ideal diode circuit")<br>
+My LM2596S circuit reaches 60°C when delivering 1A current, so I do not want to go higher.
+
+
