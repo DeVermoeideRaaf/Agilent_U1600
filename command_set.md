@@ -46,36 +46,36 @@ Button names are taken from software PC Link V2.51 (screenshot needs to be added
 ![The screenshot shows the scope surface as its rendered in PC Link 2.51](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/PCLink251-ScopeSurface.png "Scope surfave shown in PC Link 2.51")
 
 
-|button name          |function             |command (hex)    |response                                |
-|---------------------|---------------------|----------------:|---------------------------------------:|
+|button name          |function             |command (hex)    |response                                        |
+|---------------------|---------------------|----------------:|-----------------------------------------------:|
 |Power on             |lock local buttons   |53 54 41 52 54 3b|00 50 45 52 4D 49 54 00 &lt;data&gt; 00 4F 4B 00|
-|Power off            |unlock local buttons |   53 54 4f 50 3b|                                45 4E 44|
-|n.a.                 |send screen copy/data|06 00 00 00 00 3b|                     00 data 00 4F 4B 00|
-|Ch1 Y-div decrease   |fewer volts per div  |06 31 30 00 00 3b|                     00 data 00 4F 4B 00|
-|Ch1 Y-div increase   |more volts per div   |06 31 31 00 00 3b|                     00 data 00 4F 4B 00|
-|Ch2 Y-div decrease   |fewer volts per div  |06 31 32 00 00 3b|                     00 data 00 4F 4B 00|
-|Ch2 Y-div increase   |more volts per div   |06 31 33 00 00 3b|                     00 data 00 4F 4B 00|
-|X-div increase       |more time per div    |06 31 34 00 00 3b|                     00 data 00 4F 4B 00|
-|X-div decrease       |fewer time per div   |06 31 35 00 00 3b|                     00 data 00 4F 4B 00|
-|rotary button ccw    |                     |06 31 3e 00 00 3b|                     00 data 00 4F 4B 00|
-|rotary button cw     |                     |06 31 3f 00 00 3b|                     00 data 00 4F 4B 00|
-|rotary button press  |                     |06 37 30 00 00 3b|                     00 data 00 4F 4B 00|
-|F1                   |funtion key 1        |06 33 30 00 00 3b|                     00 data 00 4F 4B 00|
-|F2                   |funtion key 2        |06 33 31 00 00 3b|                     00 data 00 4F 4B 00|
-|F3                   |funtion key 3        |06 33 32 00 00 3b|                     00 data 00 4F 4B 00|
-|F4                   |funtion key 4        |06 33 33 00 00 3b|                     00 data 00 4F 4B 00|
-|TRIGGER              |                     |06 32 30 00 00 3b|                     00 data 00 4F 4B 00|
-|MEASURE              |                     |06 32 31 00 00 3b|                     00 data 00 4F 4B 00|
-|CURSOR               |                     |06 32 34 00 00 3b|                     00 data 00 4F 4B 00|
-|SAVE/LOAD            |                     |06 32 35 00 00 3b|                     00 data 00 4F 4B 00|
-|USER                 |                     |06 32 37 00 00 3b|                     00 data 00 4F 4B 00|
-|SCOPE                |                     |06 32 38 00 00 3b|                     00 data 00 4F 4B 00|
-|METER                |                     |06 32 39 00 00 3b|                     00 data 00 4F 4B 00|
-|LOGGER               |                     |06 32 41 00 00 3b|                     00 data 00 4F 4B 00|
-|RUN/STOP             |                     |06 34 31 00 00 3b|                     00 data 00 4F 4B 00|
-|AUTOSCALE            |                     |06 34 32 00 00 3b|                     00 data 00 4F 4B 00|
-|MANUAL R.            |                     |06 34 33 00 00 3b|                     00 data 00 4F 4B 00|
-|TRIG. MODE           |                     |06 37 31 00 00 3b|                     00 data 00 4F 4B 00|
+|Power off            |unlock local buttons |   53 54 4f 50 3b|                                        45 4E 44|
+|n.a.                 |send screen copy/data|06 00 00 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|Ch1 Y-div decrease   |fewer volts per div  |06 31 30 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|Ch1 Y-div increase   |more volts per div   |06 31 31 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|Ch2 Y-div decrease   |fewer volts per div  |06 31 32 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|Ch2 Y-div increase   |more volts per div   |06 31 33 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|X-div increase       |more time per div    |06 31 34 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|X-div decrease       |fewer time per div   |06 31 35 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|rotary button ccw    |                     |06 31 3e 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|rotary button cw     |                     |06 31 3f 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|rotary button press  |                     |06 37 30 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|F1                   |funtion key 1        |06 33 30 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|F2                   |funtion key 2        |06 33 31 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|F3                   |funtion key 3        |06 33 32 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|F4                   |funtion key 4        |06 33 33 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|TRIGGER              |                     |06 32 30 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|MEASURE              |                     |06 32 31 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|CURSOR               |                     |06 32 34 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|SAVE/LOAD            |                     |06 32 35 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|USER                 |                     |06 32 37 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|SCOPE                |                     |06 32 38 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|METER                |                     |06 32 39 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|LOGGER               |                     |06 32 41 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|RUN/STOP             |                     |06 34 31 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|AUTOSCALE            |                     |06 34 32 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|MANUAL R.            |                     |06 34 33 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
+|TRIG. MODE           |                     |06 37 31 00 00 3b|                     00 &lt;data&gt; 00 4F 4B 00|
 
 Note 1: The data bytes depend on the actual running function/mode (scope, meter,...).<br>
 Note 2: The menu options controlled by the function keys are not transmitted via the response. So the remote control software must know the menu structure.<br>
