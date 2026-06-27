@@ -1,4 +1,3 @@
-
 # Remote control command set
 Actual state: Sending commands is well known. Analysis of the response needs to be done.
 
@@ -41,7 +40,7 @@ Note: The serialNumber is X-ed by the author ;-)
 ## Commands
 Most commands consist of six bytes.
 Usually command starts with hex 06 and ends with hex 3b.
-Button names are taken from software PC Link V2.51 (screenshot needs to be added).
+Button names are taken from software PC Link V2.51. This software does not seem to run under Windows 11 and WINE (no connection to scope possible).
 
 ![The screenshot shows the scope surface as its rendered in PC Link 2.51](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/PCLink251-ScopeSurface.png "Scope surfave shown in PC Link 2.51")
 
@@ -87,4 +86,8 @@ Note 3: There seems to be a buffer for the response. For example: If scope is ru
 ![The screenshot shows PulseView record from sending the update-screen-command and part of the response](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/U1604A_cmd_ScreenUpdate.png "PulseView decoding the ScreenUpdate command and the response")
 
 ![The screenshot shows PulseView record from sending the STOP-command and the response](https://github.com/DeVermoeideRaaf/Agilent_U1600/blob/main/resources/U1604A_cmd_PowerOff.png "PulseView decoding the PowerOff command and the response")
+
+## Response
+The scope responds with a lot of bytes after sending a command. The number of bytes and their meaning differs depending on the function selected (scope, digital multimeter). A list with some recorded answers can be found here.
+By looking onto these records a scheme can be found: There is a group of measured values, a group für the bargraph and a group for the plotted line (scope trace or data logger). It seems to be the case, that if the statistics (min / max / mean values) are selected once and deselected later it will be sent permanently. It looks like there is a buffer for sending the data and only the changed values are wrtiiten within this buffer. Deselected statistics means not overwriting the bytes in the buffer.
 
